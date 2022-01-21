@@ -1,4 +1,4 @@
-# fake_news_dectecting_django
+# fake_news_detecting_django
 A website using Django with a function to predict if the article is real or fake.
 
 ## Prerequisite
