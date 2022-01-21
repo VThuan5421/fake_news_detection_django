@@ -16,5 +16,7 @@ You need to run file **train.ipynb** in the **app/models** folder to create mode
 6. **Run server**
 - python manage.py runserver
 
+https://user-images.githubusercontent.com/67046297/150560227-f87a4916-d474-4686-ae85-7e26e6655b8b.mp4
 ![Screenshot](/static/images/image.png)
+
 ![Screenshot](/static/images/screen.png)
