@@ -1,0 +1,334 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Natural Language Processing{% endblock %}
+{% block body %}
+<div class = "container">
+    <h1 class = "title center">Fake News and Predicting Fake News using NLP and Machine Learning</h1>
+    <h4 class = "preface center">A simple guide to applying Term Frequency - Inverse Document Frequency using Python on Kaggle's Fake News Dataset.</h5>
+    <div class = "main-image">
+        <div class = "image">
+            <img clss = "img" alt = "Source:https://copyrightalliance.org/education/qa-headlines/is-fake-news-protected-by-copyright/" src = "/static/images/fakenew.jpg">
+        </div>
+    </div>
+    <div class = "content">
+        <div class = "row1 margin-top">
+            <h2 class = "sub-title">1. Fake News</h2>
+            <h3>1.1. What is "Fake News"</h3>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Fake news" is a term that has come to mean 
+                different things to different people. At its core, we are defining "fake news" 
+                as those news stories that are false: the story itself is fabricated, with no 
+                verifiable facts, sources or quotes. Sometimes these stories may be propaganda 
+                that is intentionally designed to mislead the reader or may be designed 
+                as "clickbait" written for economic incentives (the writer profits on the number 
+                of people who click on the story). In recent years, fake news stories have 
+                proliferated via social media like Facebook, Twitter, ..., in part because 
+                they are so easily and quickly shared online.
+            </p><br>
+            <h3>1.2. Misinformation and Disinformation (orther types of "fake news")</h3>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The universe of "fake news" is much larger 
+                than simply false news stories. Some stories may have a nugget of truth 
+                but lack any contextualizing details. They may not include any verifiable 
+                facts or sources. Some stories may include basic verifiable facts, but are 
+                written using deliberately inflammatory language, leaves out pertinent 
+                details, or only presents one viewpoint. "Fake news" exists within a larger 
+                ecosystem of <b>mis- and disinformation.</b>
+            </p><br>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Misinformation is false or inaccurate information 
+                that is mistakenly or inadvertently created or spread; the intent is not to deceive. 
+                Disinformation is false information that is deliberately created and spread "  
+                to influence public opinion or obscure the truth".
+            </p><br>
+            <h3>1.3. Where does it come from?</h3>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;How misinformation and disinformation are produced 
+                is directly related to who the author(s) is and the different reasons why it is created.
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Who are the authors? They may be:</i><br>
+                <ul>
+                    <li>Someone wanting to make money, regardless of the content of the article</li>
+                    <li>Satirists who want to either make a point or entertain you, or both</li>
+                    <li>Poor or untrained journalists - The pressure of the 24-hour news cycle as well, 
+                        as the explosion of news sites may contribute to shoddy writing that doesn't 
+                        follow professional journalists standards or ethics
+                    </li>
+                    <li>Partisans who want to influence political beliefs and policymakers</li>
+                </ul>
+            </p>
+            <br>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The technological ease of copying, pasting, clicking, and 
+                sharing content online has helped these types of articles to proliferate. In some cases, 
+                the articles are designed to provoke an emotional response and placed on certain sites 
+                ("seeder") in order to entice readers into sharing them widely. In other cases, "fake news" 
+                articles may be generated and disseminated by "bots" - computer algorithms that are 
+                designed to act like people sharing information but can do so quickly and automatically.
+            </p>
+        </div>
+        <br>
+        <div class = "row2">
+            <h2 class = "sub-title">2. Natural Language Processing (NLP)</h2>
+            <h3>2.1. What is natural language processing?</h3>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Natural language processing (NLP)</b> is a subfield 
+                of linguistics, computer science and artificial intelligence concern with 
+                the interactions between computers and human language, in particular how to 
+                program computers to precess and analyze large amounts of natural language data. 
+                The goal is a computer capable of "understanding" the contents of documents, including 
+                the contextual nuances of the language within them. The technology can then accurately 
+                extract information and insights contained in the documents as well as categorize 
+                and organize the documents themselves. See more <u><a href = "https://en.wikipedia.org/wiki/Natural_language_processing">Wikipedia</a></u>.
+            </p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Challenges in natural language processing frequently involve <i>speech recognition, nature language understanding 
+                and natural language generation.</i> See more <a href = "https://machinelearningmastery.com/natural-language-processing/"><u>here</u></a>.
+            </p><br>
+            <h3>2.2 How does NLP work?</h3>
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Natural language processing inlcudes many 
+                different techniques for interpreting human language, ranging from statistical 
+                and machine and algorithmic approaches. We need a broad array of approaches 
+                because the text- and voice-based data varies widely, as do practical appications.
+                <br><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Basic NLP tasks include tokenization and parsing, 
+                lemmatization/stemming, part-of-speech tagging, language detection and identification 
+                of semantic relationships. If you ever diagramed setences in grade school, you've done these 
+                tasks manually before.<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In general terms, 
+                NLP tasks break down language into shorter, elemental pieces, try to understanding relationships 
+                between the pieces and explore how the pieces work together to create meaning.<br><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;These underlying tasks often used in higher-level NLP capabilities, 
+                such as <i>Content categorization, Topic discovery and modeling, Contextual extraction, 
+                    Sentiment analysis, Speech-to-text and text-to-speech conversion, Document summarization, 
+                    Machine translation.
+                </i>See more <a href = "https://www.sas.com/en_nz/insights/analytics/what-is-natural-language-processing-nlp.html"><u>here</u></a>.
+                <br><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In all these cases, the overarching goal is to take raw 
+                language input and use linguistics and algorithms to transform or enrich the text 
+                in such a way that it delivers greater value.
+            </p><br>
+            <h3>2.3 NLP Algorithms & Concepts</h3>
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>In general</b>, the operation of systems using NLP can be 
+                described as the next piple line:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. Enter the text (or sound converted to text).<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. Segmentation of text into components (segmentation and tokenization).<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. Text Cleaning (filtering from "garbage") - removal of unnecessary elements.<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4. Text Vectorization and Feature engineering.<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5. Lemmatization and Steaming - reducing inflections for words.<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6. Using Machine algorithms and methods for training models.<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7. Interpretation of the results.
+            </p>
+            <br>
+            <h3>2.4 NLP techniques</h3>
+            <h4>2.4.1 Count Vectorizer</h4>
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Machines cannot understand characters and words. 
+                So when dealing with text data we need to represent it in numbers to understood
+                by the machine. Counvectorizer is a method to convert text to numerical data. To 
+                show you how it works let's take an example. <u><a href = "https://medium.com/swlh/understanding-count-vectorizer-5dd71530c1b">See more</a></u>
+            </p>
+            <br>
+            <h4>2.4.2 Tfidf Vectorizer</h4>
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>TF-IDF (term frequency-inverse document frequency) </b>is a numerical 
+                statistic that shows the relevance of keywords to some specific documents 
+                or it can be said that, it provides those keywords, using which some specific 
+                documents can be identified or categorized. TF-IDF is a combination of two words. 
+                Those are Term Frequency and Inverse Document Frequency.
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>First</i>, Term Frequency (TF) is used to measure 
+                that how many times a term is present in a document. Let's suppose, We have 
+                a document "D1" containing 3000 words and the words "Happy" is present in the 
+                document exactly 15 times. It is very well known fact that, the total length 
+                of documents can vary from very small to large, so it is a possibility 
+                that any term may occur more frequently in large documents in comparison to 
+                small documents. So, to rectify this issue, the occurence of any term in a document 
+                is divided by the total terms pressent in that document, to find the term frequency. 
+                So, in this case the term frequency of the word "Happy" in the document "D1" will be: 
+                <div class = "center"><b>TF = 15 / 3000 = 0.005</b></div>
+            </p>
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Secondly</b>, Inverse Document Frequency (IDF) 
+                calculate the importance of a word, it can be observed that the algorithm treats 
+                all keywords equally, doesn't mayyer if it is a stop word like "is", "of", "that", 
+                which is incorrect. All keywords have different importance. Let's say, the stop 
+                word "is" is present in a document 1000 times but it is of no use or has a very 
+                less significant, that is exactly what IDF is for. The inverse document frequency 
+                assigns lower weight to frequent words and assigns greater weight for the word that 
+                are infrequent. For example, we have 20 documents and the term "healthy" is present 
+                in 10 of those documents, so inverse document frequency can be calculated as: 
+                <div class = "center"><b>IDF = log_e(20/10) = 0.3010</b></div>
+            </p>
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Finally</b>, from the first and second, it is 
+                understood that, the greater or higher occurence of a word in documents will give 
+                higher term frequency and the less occurence of word in documents will yeild higher 
+                importance (IDF) for that keyword searched in particular document. TF-IDF is nothing, 
+                but just the multiplication of term frequency (TF) and inverse document frequency (IDF). 
+                We have already calculated TF and IDF in the first and second, respectively. To 
+                calculate the TF-IDF we can do as:
+                <div class = "center"><b>TF-IDF = 0.005 * 0.3010 = 0.001505</b></div>
+            </p>
+            <br>
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><i>In addition, there are many techniques related to natural language processing. 
+                    See more <a href = "https://www.nlp-techniques.org/"><u>here</u></a>.
+                </i></b>
+            </p>
+        </div>
+        <br>
+        <div class = "row3">
+            <h2 class = "sub-title">3. Predicting Fake News using python on Kaggle's Fake News Dataset</h2>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The fake news dataset is one of the classic text 
+                analytics datasets available on <a href = "https://www.kaggle.com/c/fake-news/data"><u>Kaggle (train.csv)</u></a>.
+                It consists of genuine and fake article's titles and text from different authors. 
+                In this article, I'm going to use <b>CountVectorizer, Tfidf Transformer and PassiveAgressiveClassifier</b> in sklearn library for 
+                training and predicting on the dataset. Let's start.
+            </p>
+            <br>
+            <h3>3.1 Read data</h3>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;First, you need to import all the librarys below</p>
+            <div class = "script">
+                <p>import pandas as pd</p>
+                <p>import numpy as np</p>
+                <p>from sklearn.model_selection import train_test_split</p>
+                <p>from sklearn.linear_model import PassiveAggressiveClassifier</p>
+                <p>from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer, TfidfVectorizer</p>
+                <p>from sklearn.metrics import accuracy_score, f1_score, recall_score, precision_score</p><br>
+                <p>import nltk</p>
+                <p>import re</p>
+                <p>from nltk.stem import WordNetLemmatizer</p>
+                <p>from nltk.corpus import stopwords</p>
+                <p>lemmatizer = WordNetLemmatizer()</p>
+                <p>stopwords = set(stopwords.words('english'))</p>
+            </div>
+            <div class = "image-content">
+                <img class = "img-content" src = "/static/images/library.png" alt = "Code image">
+            </div>
+            <br>
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;After download the fake news dataset (train.csv). I read the 
+                DataFrame and checked the null values in it. There are 39 null vlaues in the text articles, 
+                558 in title and 1957 author out of a total of 20800 rows.
+            </p>
+            <div class = "script">
+                <p>train_df = pd.read_csv("train.csv", header = 0)</p>
+                <p>print(train_df.isna().sum())</p>
+                <p>print(train_df.shape)</p>
+            </div>
+            <div class = "image-content">
+                <img class = "img-content" src = "/static/images/null.png" alt = "Code image">
+            </div>
+            <br>
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;So, i would fill all nans with a <b>blank</b> and <b>strip</b> 
+                them next, then, remove the zero-length texts and that should be good to start the 
+                preprocessing. Following is the new code that handles missing values essentially. 
+                The final shape of the data is (20684, 6), that is, it contains 20684 rows, only 116 
+                less than 20800.
+            </p>
+            <div class = "script">
+                <p>train_df = train_df.fillna(' ')</p>
+                <p>train_df['text'] = train_df['text'].str.strip()</p>
+                <p>train_df['text_length'] = train_df['text'].apply(lambda x: len(x))</p>
+                <p>print("There are {} rows with text length 0.".format(train_df[train_df['text_length'] == 0])))</p>
+                <p>train_df = train_df[train_df['text_length'] > 0]</p>
+                <p>print(train_df.shape)</p>
+            </div>
+            <div class = "image-content">
+                <img class = "img-content" src = "/static/images/strip.png" alt = "Code image">
+            </div>
+            <br>
+            <h3>3.2 Text Preprocessing</h3>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To start with pre-processing, i found out 
+                there are some other languages in the text. So in the first step, i used regex 
+                to preserver only the Latin characters, digits and spaces. Then i use <b>nltk.word_tokenize</b> 
+                to split words into a list. Next, I use <b>lemmatizer.lemmatize</b> to create a base word 
+                for each word (Example: went -> go). Finally, i return a string that contains those words.
+            </p>
+            <div class = "script">
+                <p>def text_processing(x):</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cleaned_text = re.sub(r'[^a-zA-Z\d\s\']+', '', x)</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;words = nltk.word_tokenize(cleaned_text)</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;words_list = [lemmatizer.lemmatize(w.lower()) for w in words if w not in stopwords]</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return " ".join(words_list)</p>
+            </div>
+            <div class = "image-content">
+                <img class = "img-content" src = "/static/images/processing.png" alt = "Code image">
+            </div>
+            <br>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Once, this is done, i proceed to process the text 
+                in the dataset.
+            </p>
+            <div class = "script">
+                <p>train_df['base_text'] = train_df['text'].apply(lambda x: text_processing(x))</p>
+            </div>
+            <div class = "image-content">
+                <img class = "img-content" src = "/static/images/change_text.png" alt = "Code image">
+            </div>
+            <br>
+            <h3>3.3 Text Classification using Machine Learning</h3>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Once the preprocessing text is complete, I took 
+                first the conventional way of using the Count Vectorizer and term frequency-inverse 
+                document frequency or Tf-idf. The Count Vectorizer, as configured in the code, generates bigrams 
+                as well. The counts of their occurrences are obtained in the form of a matrix using 
+                the CountVectorizer() and this word-count matrix is then transformed into the 
+                normalized term-frequency (tf-idf) representation. Here, I have used smooth = False, 
+                to avoid zero division error. By providing smooth = False, I am basically adding one 
+                to the document frequency since it is the denominator in the formula for IDF 
+                calculation, as shown below.
+            </p>
+            <p class = "center"><b>idf(t) = log[n / df(t) + 1)]</b></p>
+            <div class = "script">
+                <p>label = train_df['label'].values</p>
+                <p># label 1 is fake, label 0 is real.</p>
+                <p>count_vectorizer = CountVectorizer(ngram_range = (1, 2))</p>
+                <p>tfidf_transformer = TfidfTransformer(smooth_idf = False)</p>
+                <p>count_vect_train = count_vectorizer.fit_transform(train_df['base_text'].values)</p>
+                <p>tfidf_train = tfidf_transformer.fit_transform(count_vect_train)</p>
+                <p>x_train, x_test, y_train, y_test = train_test_split(tfidf_train, label, test_size = 0.2, random_state = 0)</p>
+            </div>
+            <div class = "image-content">
+                <img class = "img-content" alt = "Code image" src = "/static/images/train_test.png">
+            </div>
+            <br>
+            <h3>3.4 Passive Aggressive Classifier</h3>
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Passive Aggressive algorithms are online learning algorithms. 
+                Such an algorithm remains passive for a correct classification outcome and turns 
+                aggressive in the event of a miscalculation, updating, and adjusting. Unlike most 
+                other algorithms, it does not converge. Its purpose is to make updates that correct 
+                the loss, causing very little change in the norm of the weight vector.
+            </p>
+            <div class = "script">
+                <p>pac = PassiveAggressiveClassifier(max_iter = 50)</p>
+                <p>pac.fit(x_train, y_train)</p>
+                <p>y_pred = pac.predict(x_test)</p>
+                <p>print("Accuracy score: ", accuracy_score(y_pred, y_test))</p>
+                <p>print("Precision score: ", precision_score(y_pred, y_test))</p>
+                <p>print("F1 score: ", f1_score(y_pred, y_test))</p>
+                <p>print("Recall score: ", recall_score(y_pred, y_test))</p>
+            </div>
+            <div class = "image-content">
+                <img class = "img-content" src = "/static/images/result.png" alt = "Code image">
+            </div>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Source code </b><a href = "https://github.com/VThuan5421/fake_news_dectecting_django">here</a>.</p>
+            <br>
+        </div>
+        <div class = "row">
+            <h2 class = "sub-title">4. Summary</h2>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Today, we learned to detect fake news with Python. 
+                We took a political dataset, implemented a CountVectorizer, TfidfTransformer, 
+                initialized a PassiveAggressiveClassifier, and fit our model. We ended up obtaining an 
+                accuracy of 97.09% in magnitude.
+            </p>
+        </div>
+        <br>
+        <div class = "row padding-bottom">
+            <h4>References:</h4>
+            <p>1. <a href = "https://guides.lib.umich.edu/fakenews">https://guides.lib.umich.edu/fakenews</a></p>
+            <p>2. <a href = "https://www.datasciencecentral.com/top-nlp-algorithms-amp-concepts/">https://www.datasciencecentral.com/top-nlp-algorithms-amp-concepts/</a></p>
+            <!--<p>2. <a href = "https://ipur.nus.edu.sg/resources/fake-news-and-social-media/">https://ipur.nus.edu.sg/resources/fake-news-and-social-media/</a></p>-->
+            <p>3. <a href = "https://www.researchgate.net/publication/326425709_Text_Mining_Use_of_TF-IDF_to_Examine_the_Relevance_of_Words_to_Documents">https://www.researchgate.net/publication/326425709_Text_Mining_Use_of_TF-IDF_to_Examine_the_Relevance_of_Words_to_Documents</a></p>
+            <p>4. <a href = "https://towardsdatascience.com/predicting-fake-news-using-nlp-and-machine-learning-scikit-learn-glove-keras-lstm-7bbd557c3443">https://towardsdatascience.com/predicting-fake-news-using-nlp-and-machine-learning-scikit-learn-glove-keras-lstm-7bbd557c3443</a></p>
+            <p>5. <a href = "https://www.sas.com/en_nz/insights/analytics/what-is-natural-language-processing-nlp.html">https://www.sas.com/en_nz/insights/analytics/what-is-natural-language-processing-nlp.html</a></p>
+            <p>6. <a href = "https://data-flair.training/blogs/advanced-python-project-detecting-fake-news/">https://data-flair.training/blogs/advanced-python-project-detecting-fake-news/</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

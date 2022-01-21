@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}NLP | Detect REAL & FAKE{% endblock %}
+{% block body %}
+<div class = "main-body padding-top-2 padding-bottom">
+    <h3 class = "center">Is Genuine or Fake News?</h3>
+    <h5 class = "center">(The language of the article must be English.)</h5>
+    {% if check_result %}
+    <h3 class = "center" style = "color: blueviolet;">{% if result == 1 %}This is a fake article.{% else %}This is a genuine article.{% endif %}</h3>
+    {% endif %}
+    <div class = "box-article">
+        <div class = "main-form">
+            <form class = "form" method = "POST" enctype = "multipart/form-data">
+                {% csrf_token %}
+                <div class = "form-group">
+                    <textarea name = "text" placeholder = "Copy and paste or type the entire article here...">{% if check_text %}{{txt}}{% endif %}</textarea>
+                </div>
+                <button type = "submit" class = "btn btn-submit">Check</button>
+            </form>
+            <div class = "note">
+                <p><b>Note: </b>The prediction results will be more accurate if we predict the whole article.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

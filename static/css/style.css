@@ -1,0 +1,307 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+    font-family: 'Poppins', sans-serif;
+}
+body {
+    padding-top: 5rem;
+}
+.container-fluid {
+    padding-left: 110px;
+    padding-right: 110px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+.container {
+    padding-left: 150px;
+    padding-right: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+a {
+    text-decoration: none;
+}
+img {
+    width: 100%;
+}
+.center {
+    text-align: center;
+}
+.padding-top {
+    padding-top: 50px;
+}
+.padding-bottom {
+    padding-bottom: 50px;
+}
+.padding-half {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.pading-half-2 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.padding-top-2 {
+    padding-top: 20px;
+}
+.magin-top {
+    margin-top: 20px;
+}
+.margin-bottom {
+    margin-bottom: 20px;
+}
+/* =================== header ================== */
+.logo {
+    font-weight: bold;
+    font-size: 25px;
+    color: #000;
+}
+.header {
+    z-index: 1000;
+    background-color: #fff;
+    position: fixed;
+    top:0 ;
+    left: 0;
+    padding: 1rem 0;
+    border-bottom: 2px solid #A0A0A0;
+    width: 100%;
+}
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.header-left,
+.header-right {
+    display: flex;
+    align-items: center;
+}
+.header-right {
+    justify-content: space-between;
+}
+.header-right div ~ div {
+    margin-right: 20px;
+}
+.header-right .item-link {
+    font-size: 18px;
+    color: black;
+    transition: 0.3s ease-in-out;
+}
+a.item-link {
+    color: black;
+    font-weight: bold;
+    transition: 0.3s ease-in-out;
+}
+.header-right .item-lin:hover {
+    color: plum;
+}
+.main-body {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+.box-article {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.main-form {
+    background-color: palegreen;
+    width: 850px;
+    height: auto;
+    border-radius: 10px;
+    padding: 20px 20px;
+}
+.form textarea {
+    resize: none;
+    width: 100%;
+    height: 450px;
+    border-radius: 5px;
+    border: 1px solid pink;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 15px;
+    outline: 0;
+    font-family: 'Poppins', sans-serif;
+}
+.btn {
+    padding: 5px 12px;
+    border: none;
+    outline: 0;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: all 0.5s;
+    width: 100%;
+    text-transform: uppercase;
+    color: #000;
+    font-weight: 700;
+}
+.btn-submit {
+    background-color: plum;
+    border-bottom: 8px solid rgb(235, 144, 194);
+    border-left: 5px solid rgb(216, 226, 187);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.5s;
+    font-size: 17px;
+}
+.btn-submit:hover {
+    transform: translateY(5px);
+    border-bottom: 2px solid rgb(235, 144, 194);
+    border-left: 2px solid rgb(216, 226, 187);
+}
+/* ==================== index template =================== */
+.content ul {
+    margin-left: 60px;
+}
+.preface {
+    color: #A0A0A0;
+}
+.content {
+    word-wrap: break-word;
+    overflow: hidden;
+}
+.note {
+    margin-top: 10px;
+}
+.content .script {
+    border-radius: 5px;
+    background-color: rgb(37, 34, 34);
+    color: #fff;
+    padding: 10px 20px;
+}
+.footer {
+    background-color:rgb(37, 34, 34);
+    border-top: 2px solid #A0A0A0;
+}
+.footer h3 {
+    color: greenyellow;
+}
+.footer h3 a {
+    color: purple;
+}
+@media only screen and (max-width: 900px) {
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 80px;
+        padding-right: 80px;
+        width: 100%;
+    }
+    .title {
+        font-size: 25px;
+    }
+    .content h2 {
+        font-size: 22px;
+    }
+    .content h3 {
+        font-size: 20px;
+    }
+    .content h4 {
+        font-size: 19px;
+    }
+    .content ul li, p {
+        font-size: 16px;
+    }
+    .preface {
+        font-size: 18px;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 40px;
+        padding-right: 40px;
+        width: 100%;
+    }
+    .content p {
+        font-size: 12px;
+    }
+    .title {
+        font-size: 20px;
+    }
+    .content h2 {
+        font-size: 18px;
+    }
+    .content h3 {
+        font-size: 16px;
+    }
+    .content h4 {
+        font-size: 15px;
+    }
+    .content ul li, p {
+        font-size: 12px;
+    }
+    .content ul {
+        margin-left: 20px;
+    }
+    .preface  {
+        font-size: 15px;
+    }
+    .footer h3 {
+        font-size: 15px;
+    }
+}
+@media only screen and (max-width: 500px) {
+    .container-fluid, .container {
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 30px;
+        padding-right: 30px;
+        width: 100%;
+    }
+    .main-body h3 {
+        font-size: 16px;
+    }
+    .main-body h5 {
+        font-size: 14px;
+    }
+    .form textarea {
+        font-size: 13px;
+    }
+    .note {
+        font-size: 13px;
+    }
+    .btn-submit {
+        font-size: 15px;
+    }
+    .footer h3 {
+        font-size: 13px;
+    }
+}
+@media only screen and (max-width: 300px) {
+    .container-fluid, .container {
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 10px;
+        padding-right: 10px;
+        width: 100%;
+    }
+    .title {
+        font-size: 17px;
+    }
+    .content h2 {
+        font-size: 16px;
+    }
+    .content h3 {
+        font-size: 14px;
+    }
+    .content h4 {
+        font-size: 13px;
+    }
+    .content ul li, p {
+        font-size: 12px;
+    }
+    .preface  {
+        font-size: 13px;
+    }
+}
