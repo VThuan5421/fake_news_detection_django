@@ -14,7 +14,6 @@ A website using Django with a function to predict if the article is real or fake
 - python manage.py runserver
 
 ## Prerequisite
-You need to run file /**train.ipynb**/ in app/models folder to create models
-and save it for reuse. These models must be saved in the same folder (app/models/)
+You need to run file **train.ipynb** in the **app/models** folder to create models and save them for reuse. These models must be saved in the same folder (app/models/)
 
 ![Screenshot](/static/images/screen.png)
