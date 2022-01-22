@@ -1,4 +1,4 @@
-# fake_news_detecting_django
+# fake_news_detection_django
 A website using Django with a function to predict if the article is real or fake.
 
 ## Prerequisite
@@ -6,7 +6,7 @@ You need to run file **train.ipynb** in the **app/models** folder to create mode
 
 ### Setup your enviroment
 1. **Open cmd or window powershell**
-2. **go to project folder**. Ex: cd ./path/to/fake_news_detecting_django-main
+2. **go to project folder**. Ex: cd ./path/to/fake_news_detection_django-main
 3. **Create virtual environment**
 - python -m venv env **or** py -m venv env
 4. **Run virtual environment**
